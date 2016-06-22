@@ -13,6 +13,20 @@
 </div>
 
 <%= form_for(@message, html: {class: "form-horizontal", role:"form"}) do |f| %>
+  <% if @message.errors.present? %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+        <% @message.errors.full_messages.each do |full_message| %>
+          <li>
+            <%= full_message %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>
+
+
  <div class="form-group" style="margin-bottom:30px;">
     <%= f.label :name, "名前:", class: 'col-sm-1 control-label' %>
   
@@ -27,3 +41,4 @@
     <%= f.submit class: "col-sm-offset-1 btn btn-sm btn-primary" %>
   </div>
 <% end %>
+
